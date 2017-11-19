@@ -1,9 +1,12 @@
 package com.example.jensie.tbg;
 
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,10 +28,23 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
 
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mToggle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //vind de drawerlayou.
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        //toggle knop.
+        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout, R.string.open, R.string.close);
+        //zet de toggle knop zo dat hij het menu zal gaan toglen
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        //Zet het icoontje.
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
@@ -240,6 +256,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    //Er voor zorgen dat als je het menu icoontje aanraakt het menu ook wel open gaat en sluit.
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(mToggle.onOptionsItemSelected(item)){
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     //sign out method
