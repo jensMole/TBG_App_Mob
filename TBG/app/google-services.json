@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "467360198491",
+    "firebase_url": "https://tbg-auth.firebaseio.com",
+    "project_id": "tbg-auth",
+    "storage_bucket": "tbg-auth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:467360198491:android:dd5fd30791f5012c",
+        "android_client_info": {
+          "package_name": "com.example.jensie.tbg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "467360198491-dqnvcturhb2jbot1cj8br1kt75qvq6g6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jensie.tbg",
+            "certificate_hash": "de791893e36124434d132e47af6c43f0c930c04e"
+          }
+        },
+        {
+          "client_id": "467360198491-dii0ml2ddr5ggq6hnterrquvcqalvv4r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4Cpq45oG-BbassEJvJl5IPkBsiivB4pk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "467360198491-dii0ml2ddr5ggq6hnterrquvcqalvv4r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
