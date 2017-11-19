@@ -1,5 +1,6 @@
 package com.example.jensie.tbg;
 
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -257,6 +258,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
 
     //Er voor zorgen dat als je het menu icoontje aanraakt het menu ook wel open gaat en sluit.
     @Override
