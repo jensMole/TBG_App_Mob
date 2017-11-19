@@ -3,9 +3,7 @@ package com.example.jensie.tbg;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,17 +30,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //toolbar.setTitle(getString(R.string.app_name));
-        //setSupportActionBar(toolbar);
-
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
 
         //get current user
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        authListener = new FirebaseAuth.AuthStateListener() {
+        authListener = new FirebaseAuth.AuthStateListener() {//nakijken als je al aangemeld was. Als dit niet zo is ga je naar de login page.
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -99,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //voor je mail aan te passen.
         changeEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //voor wachtwoord aan te passen
         btnChangePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
                 remove.setVisibility(View.GONE);
             }
         });
+
 
         changePassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //voor het resetten.
         btnSendResetEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -209,6 +207,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //weghalen van user.
         btnRemoveUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -219,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(MainActivity.this, "Your profile is deleted:( Create a account now!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MainActivity.this, "Your profile is deleted :( Create a account now!", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(MainActivity.this, SignupActivity.class));
                                         finish();
                                         progressBar.setVisibility(View.GONE);
@@ -233,6 +232,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //uitloggen
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

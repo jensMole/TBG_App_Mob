@@ -1,5 +1,7 @@
 package com.example.jensie.tbg;
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -36,42 +38,57 @@ public class ResetPasswordActivity extends AppCompatActivity{
         btnBack = (Button) findViewById(R.id.btn_back);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
+        //firebase binnen krijgen
         auth = FirebaseAuth.getInstance();
 
+        //als je op de terug knop drukt
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) {//dit scherm afsluiten.
                 finish();
             }
         });
 
+        //als je op de reset knop drukt.
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 String email = inputEmail.getText().toString().trim();
 
-                if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplication(), "Vul je geregistreerde email in!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                //connectivity opzetten
+                ConnectivityManager cManager = (ConnectivityManager) getSystemService(getApplicationContext().CONNECTIVITY_SERVICE);
+                //bekijken als men verbonden is.
+                NetworkInfo nInfo = cManager.getActiveNetworkInfo();
+                //kijken als je verbonden bent of niet en toon een toast.
+                if(nInfo != null && nInfo.isConnected()) {
 
-                progressBar.setVisibility(View.VISIBLE);
-                auth.sendPasswordResetEmail(email)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(ResetPasswordActivity.this, "We hebben je een mail gestuurd met instructies om je wachtwoord te resetten! Let op de mail kan in Spam staan.", Toast.LENGTH_LONG).show();
-                                } else {
-                                    Toast.makeText(ResetPasswordActivity.this, "Gefaald voor het zenden van de reset mail!", Toast.LENGTH_SHORT).show();
+                    //als je het mail veld leeg laat.
+                    if (TextUtils.isEmpty(email)) {
+                        Toast.makeText(getApplication(), "Vul je geregistreerde email in!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    //progressbar tonen.
+                    progressBar.setVisibility(View.VISIBLE);
+                    //zenden van de email.
+                    auth.sendPasswordResetEmail(email)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {//Als het gelukt is
+                                        Toast.makeText(ResetPasswordActivity.this, "We hebben je een mail gestuurd met instructies om je wachtwoord te resetten! Let op de mail kan in Spam staan.", Toast.LENGTH_LONG).show();
+                                    } else {//als er iets niet klopt.
+                                        Toast.makeText(ResetPasswordActivity.this, "Gefaald voor het zenden van de reset mail!", Toast.LENGTH_SHORT).show();
+                                    }
+                                    //progressbar weghalen.
+                                    progressBar.setVisibility(View.GONE);
                                 }
-
-                                progressBar.setVisibility(View.GONE);
-                            }
-                        });
+                            });
+                }else{//Als je geen internet verbinding hebt.
+                    Toast.makeText(getApplicationContext(), "Deze applicatie vraagt wifi of 4G, gelieve deze aan te zetten.",
+                            Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
-
 }

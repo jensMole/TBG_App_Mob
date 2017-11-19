@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">TBG</string>
     <string name="action_sign_in_short">Registreer</string>
-    <string name="auth_failed">Authenticatie niet geslaagd, kijk je mail en wachtwoord na of meld je aan</string>
+    <string name="auth_failed">Authenticatie niet geslaagd, kijk je mail en wachtwoord na.</string>
     <string name="btn_change">Verander</string>
     <string name="btn_forgot_password">Je wachtwoord vergeten</string>
     <string name="btn_link_to_login">Al geregistreerd? Log mij in!</string>
@@ -19,10 +19,11 @@
     <string name="hint_new_email">Nieuwe Email</string>
     <string name="hint_password">Wachtwoord</string>
     <string name="lbl_forgot_password">Wachtwoord vergeten?</string>
-    <string name="minimum_password">Wachtwoord te kort, enter minimum 6 tekens!</string>
+    <string name="minimum_password">Wachtwoord te kort, vul minimum 6 tekens!</string>
     <string name="new_pass">Nieuw wachtwoord</string>
     <string name="remove_user">Verwijder account</string>
     <string name="send_password_reset_email">Zend wachtwoord</string>
     <string name="title_activity_login">Meld aan</string>
     <string name="title_activity_reset_password">Reset wachtwoord</string>
+    <string name="btn_back">Terug</string>
 </resources>
